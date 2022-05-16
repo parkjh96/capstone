@@ -1,0 +1,46 @@
+type Query {
+  info: String!
+  feed: [Link!]!  
+  Users: [User!]!
+	books: [Book]
+}
+
+type Mutation {
+  post(url: String!, description: String!): Link!
+  signup(email: String!, password: String!, name: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+	createBook(title: String!, year: Int!, genre: String): Book
+  deleteBook(id: Int!): Book
+  updateBook(id: Int!, title: String, year: Int, genre: String): Book
+}
+
+type Link {
+  id: ID!
+  description: String!
+  url: String!
+  postedBy: User
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  rftoken: String!
+  actoken: String!
+  links: [Link!]!
+}
+
+type Book {
+  id: Int!
+  title: String!
+  author: String
+  year: Int!
+  genre: String
+  createdAt: String!
+  updatedAt: String!
+}
